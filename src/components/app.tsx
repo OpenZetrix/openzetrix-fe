@@ -17,13 +17,9 @@ const Context = createContext<any>(null);
 
 export default function AppContext(props: any) {
   const pathname = usePathname();
-  const [walletAddress, setWalletAddress] = useState<string>("");
   const [contractType, setContractType] = useState<string>("ZTP20");
 
   useEffect(() => {
-    // Load application context from storage
-    setWalletAddress(getLocalStorageItem("walletAddress", ""));
-
     // Track page view on pathname change
     if (pathname) {
       ReactGA.send({ hitType: "pageview", page: pathname });
@@ -32,8 +28,6 @@ export default function AppContext(props: any) {
 
   // Set value for context
   const contextValue = {
-    walletAddress,
-    setWalletAddress,
     contractType,
     setContractType,
   };
